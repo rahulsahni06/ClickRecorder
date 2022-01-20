@@ -1,3 +1,4 @@
+import javax.swing.*; 
 
 boolean isButton00Active = false;  
 boolean isButton01Active = false;  
@@ -10,14 +11,33 @@ boolean isButton20Active = false;
 boolean isButton21Active = false; 
 boolean isButton22Active = false;  
 
+boolean isTwoButtonsDone = false;
+boolean isFourButtonsDone = false;
+boolean isEightButtonsDone = false;
+
+String userNumber;
+
 void setup() {
   //fullScreen();
   size(640, 640);
   background(0);
+  
+  userNumber = JOptionPane.showInputDialog(frame, "Enter user number");
+  
+  if(userNumber == null) {
+    exit();
+  }
+  
 }
 
 void draw() {
   background(0);
+  
+  if(isEightButtonsDone) {
+    JOptionPane.showMessageDialog(frame,"Thank you for testing the program!");  
+    exit();
+  }
+  
   
   //First row buttons
   button(isButton00Active, BUTTON_00_POS[0], BUTTON_00_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -33,6 +53,8 @@ void draw() {
   button(isButton20Active, BUTTON_20_POS[0], BUTTON_20_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
   button(isButton21Active, BUTTON_21_POS[0], BUTTON_21_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
   button(isButton22Active, BUTTON_22_POS[0], BUTTON_22_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+  
+  //ellipse(WIDTH/2, HEIGHT/2, 300, 300);
   
   
 }
