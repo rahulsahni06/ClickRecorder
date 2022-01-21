@@ -15,7 +15,7 @@ boolean isTwoButtonsDone = false;
 boolean isFourButtonsDone = false;
 boolean isEightButtonsDone = false;
 
-String userNumber;
+String userNumber = "aa";
 int trialCount = 0;
 
 long startTime = 0;
@@ -28,8 +28,7 @@ int blockNo = 1;
 PrintWriter output;
 
 void setup() {
-  //fullScreen();
-  size(640, 640);
+  size(600, 600);
   background(0);
   
   userNumber = JOptionPane.showInputDialog(frame, "Enter user number");
@@ -43,13 +42,16 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+  background(255);
+  stroke(0);
+
   
   if(isEightButtonsDone) {
     JOptionPane.showMessageDialog(frame,"Thank you for testing the program!");  
     output.flush();
     output.close();
     exit();
+    return;
   }
   
   if(trialCount < TRIAL_COUNT && isTwoButtonsDone) {
@@ -74,10 +76,7 @@ void draw() {
   }
   
   startButton();
-  
-  //ellipse(WIDTH/2, HEIGHT/2, 300, 300);
-  
-  
+ 
 }
 
 void button(boolean isActive, float x, float y, int rectWidth, int rectHeight) {
@@ -94,9 +93,9 @@ void button(boolean isActive, float x, float y, int rectWidth, int rectHeight) {
 void startButton() {
   
   if(overStartButton(WIDTH/2, HEIGHT/2, 100)) {
-    fill(color(204));
+    fill(color(#F5EC43));
   } else {
-    fill(#ffffff);
+    fill(#F2EF98);
   }
   
   ellipse(WIDTH/2, HEIGHT/2, 100, 100);
@@ -205,8 +204,8 @@ void mousePressed() {
     errorCount++;
   }
   
-  println(""+userNumber+"# "+blockNo+"# "+trialCount+"# "+nf(timeDiff, 0, 3)+"sec "+errorCount);
-  output.println(""+userNumber+"# "+blockNo+"# "+trialCount+"# "+nf(timeDiff, 0, 3)+"sec "+errorCount);
+  println("User:"+userNumber+"   Block no:"+blockNo+"   Trial no:"+trialCount+"   Time elapsed:"+nf(timeDiff, 0, 5)+"sec   Error count:"+errorCount);
+  output.println("User:"+userNumber+"   Block no:"+blockNo+"   Trial no:"+trialCount+"   Time elapsed:"+nf(timeDiff, 0, 5)+"sec   Error count:"+errorCount);
 }
 
 void activateRandomButton() {
@@ -220,37 +219,30 @@ void activateRandomButton() {
   
     switch(buttonToActivate) {
       case 0:
-        //isButton00Active = true;
         isButton10Active = true;
         break;
       
       case 1:
-        //isButton01Active = true;
         isButton12Active = true;
         break;
       
       case 2:
         isButton01Active = true;
-        //isButton02Active = true;
         break;
       
       case 3:
-        //isButton10Active = true;
         isButton21Active = true;
         break;
       
       case 4:
-        //isButton12Active = true;
         isButton00Active = true;
         break;
       
       case 5:
-        //isButton20Active = true;
         isButton02Active = true;
         break;
       
       case 6:
-        //isButton21Active = true;
         isButton20Active = true;
         break;
       

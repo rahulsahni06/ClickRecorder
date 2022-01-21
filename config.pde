@@ -1,21 +1,22 @@
-final static int WIDTH = 640;
-final static int HEIGHT = 640;
+final int WIDTH = 600;
+final int HEIGHT = 600;
 
-final static int START_BUTTON_WIDTH = 100;
-final static int START_BUTTON_HEIGHT = 100;
+final int START_BUTTON_WIDTH = 100;
+final int START_BUTTON_HEIGHT = 100;
 
-final static int BUTTON_WIDTH = 100;
-final static int BUTTON_HEIGHT = 100;
+final int BUTTON_WIDTH = 100;
+final int BUTTON_HEIGHT = 100;
 
-final static float[] BUTTON_00_POS = {WIDTH/2 - BUTTON_WIDTH * 1.5, HEIGHT/2 - BUTTON_HEIGHT * 1.5};
-final static float[] BUTTON_01_POS = {WIDTH/2, HEIGHT/2 - BUTTON_HEIGHT * 1.5};
-final static float[] BUTTON_02_POS = {WIDTH/2 + BUTTON_WIDTH * 1.5, HEIGHT/2 - BUTTON_HEIGHT * 1.5};
 
-final static float[] BUTTON_10_POS = {WIDTH/2 - BUTTON_WIDTH * 1.5, HEIGHT/2};
-final static float[] BUTTON_12_POS = {WIDTH/2 + BUTTON_WIDTH * 1.5, HEIGHT/2};
+final float[] BUTTON_00_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*225.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*225.0)};
+final float[] BUTTON_01_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*270.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*270.0)};
+final float[] BUTTON_02_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*315.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*315.0)};
 
-final static float[] BUTTON_20_POS = {WIDTH/2 - BUTTON_WIDTH * 1.5, HEIGHT/2 + BUTTON_HEIGHT * 1.5};
-final static float[] BUTTON_21_POS = {WIDTH/2, HEIGHT/2 + BUTTON_HEIGHT * 1.5};
-final static float[] BUTTON_22_POS = {WIDTH/2 + BUTTON_WIDTH * 1.5, HEIGHT/2 + BUTTON_HEIGHT * 1.5};
+final float[] BUTTON_10_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*180.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*180.0)};
+final float[] BUTTON_12_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*0.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*0.0)};
 
-final static int TRIAL_COUNT = 20;
+final float[] BUTTON_20_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*135.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*135.0)};
+final float[] BUTTON_21_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*90.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*90.0)};
+final float[] BUTTON_22_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*45.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*45.0)};
+
+final int TRIAL_COUNT = 5;
