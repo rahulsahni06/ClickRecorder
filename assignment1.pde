@@ -25,6 +25,8 @@ String timeDiffString;
 int errorCount = 0;
 int blockNo = 1;
 
+PrintWriter output;
+
 void setup() {
   //fullScreen();
   size(640, 640);
@@ -36,6 +38,8 @@ void setup() {
     exit();
   }
   
+  output = createWriter(userNumber+"_log.txt"); 
+  
 }
 
 void draw() {
@@ -43,6 +47,8 @@ void draw() {
   
   if(isEightButtonsDone) {
     JOptionPane.showMessageDialog(frame,"Thank you for testing the program!");  
+    output.flush();
+    output.close();
     exit();
   }
   
@@ -200,6 +206,7 @@ void mousePressed() {
   }
   
   println(""+userNumber+"# "+blockNo+"# "+trialCount+"# "+nf(timeDiff, 0, 3)+"sec "+errorCount);
+  output.println(""+userNumber+"# "+blockNo+"# "+trialCount+"# "+nf(timeDiff, 0, 3)+"sec "+errorCount);
 }
 
 void activateRandomButton() {
