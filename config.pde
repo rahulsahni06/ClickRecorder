@@ -17,3 +17,5 @@ final static float[] BUTTON_12_POS = {WIDTH/2 + BUTTON_WIDTH * 1.5, HEIGHT/2};
 final static float[] BUTTON_20_POS = {WIDTH/2 - BUTTON_WIDTH * 1.5, HEIGHT/2 + BUTTON_HEIGHT * 1.5};
 final static float[] BUTTON_21_POS = {WIDTH/2, HEIGHT/2 + BUTTON_HEIGHT * 1.5};
 final static float[] BUTTON_22_POS = {WIDTH/2 + BUTTON_WIDTH * 1.5, HEIGHT/2 + BUTTON_HEIGHT * 1.5};
+
+final static int TRIAL_COUNT = 20;

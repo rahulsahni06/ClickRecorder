@@ -16,6 +16,14 @@ boolean isFourButtonsDone = false;
 boolean isEightButtonsDone = false;
 
 String userNumber;
+int trialCount = 0;
+
+long startTime = 0;
+long endTime = 0;
+float timeDiff = 0;
+String timeDiffString;
+int errorCount = 0;
+int blockNo = 1;
 
 void setup() {
   //fullScreen();
@@ -38,21 +46,28 @@ void draw() {
     exit();
   }
   
+  if(trialCount < TRIAL_COUNT && isTwoButtonsDone) {
+    button(isButton01Active, BUTTON_01_POS[0], BUTTON_01_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+    button(isButton21Active, BUTTON_21_POS[0], BUTTON_21_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+  }
   
-  //First row buttons
-  button(isButton00Active, BUTTON_00_POS[0], BUTTON_00_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
-  button(isButton01Active, BUTTON_01_POS[0], BUTTON_01_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
-  button(isButton02Active, BUTTON_02_POS[0], BUTTON_02_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+  if(trialCount < TRIAL_COUNT && isFourButtonsDone) {
+      //First row buttons
+    button(isButton00Active, BUTTON_00_POS[0], BUTTON_00_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+    button(isButton02Active, BUTTON_02_POS[0], BUTTON_02_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+    //Last row buttons
+    button(isButton20Active, BUTTON_20_POS[0], BUTTON_20_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+    button(isButton22Active, BUTTON_22_POS[0], BUTTON_22_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+  }
   
-  //Middle row buttons
-  button(isButton10Active, BUTTON_10_POS[0], BUTTON_10_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
-  button(isButton12Active, BUTTON_12_POS[0], BUTTON_12_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+  if(trialCount < TRIAL_COUNT) {
+ 
+    //Middle row buttons
+    button(isButton10Active, BUTTON_10_POS[0], BUTTON_10_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+    button(isButton12Active, BUTTON_12_POS[0], BUTTON_12_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
+  }
+  
   startButton();
-  
-  //Last row buttons
-  button(isButton20Active, BUTTON_20_POS[0], BUTTON_20_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
-  button(isButton21Active, BUTTON_21_POS[0], BUTTON_21_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
-  button(isButton22Active, BUTTON_22_POS[0], BUTTON_22_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT);
   
   //ellipse(WIDTH/2, HEIGHT/2, 300, 300);
   
@@ -82,7 +97,15 @@ void startButton() {
   
   fill(0);
   textAlign(CENTER);
-  text("START", WIDTH/2, HEIGHT/2);
+  
+  
+  if(trialCount >= TRIAL_COUNT) {
+    text("Click to \ncontinue", WIDTH/2, HEIGHT/2);
+  } else {
+    text("Start", WIDTH/2, HEIGHT/2);
+  }
+  
+  
 }
 
 
@@ -98,55 +121,132 @@ boolean overButton(float x, float y, int buttonWidth, int buttonHeight) {
 
 void mousePressed() {
   if(overStartButton(WIDTH/2, HEIGHT/2, 100)) {
-    println("Start pressed");
+    
+    startTime = System.currentTimeMillis();
   
     resetButtons();
     activateRandomButton();
+    if(trialCount >= TRIAL_COUNT) {
+      
+      trialCount = 0;
+      
+      if(!isTwoButtonsDone) {
+        isTwoButtonsDone = true;
+        blockNo++;
+        return;
+      }
+      if(isTwoButtonsDone && !isFourButtonsDone) {
+        isFourButtonsDone = true;
+        blockNo++;
+        return;
+      }
+      
+      if(isFourButtonsDone) {
+        isEightButtonsDone = true; 
+      }
+      
+    }
+    return;
     
   } else if(isButton00Active && overButton(BUTTON_00_POS[0], BUTTON_00_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
     isButton00Active = false;
+    trialCount++;
+    endTime = System.currentTimeMillis();
+    timeDiff = (endTime-startTime)/1000.0;
+  
   } else if(isButton01Active && overButton(BUTTON_01_POS[0], BUTTON_01_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
     isButton01Active = false;
+    trialCount++;
+    endTime = System.currentTimeMillis();
+    timeDiff = (endTime-startTime)/1000.0;
+    
   } else if(isButton02Active && overButton(BUTTON_02_POS[0], BUTTON_02_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
     isButton02Active = false;
+    trialCount++;
+    endTime = System.currentTimeMillis();
+    timeDiff = (endTime-startTime)/1000.0;
+    
   } else if(isButton10Active && overButton(BUTTON_10_POS[0], BUTTON_10_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
     isButton10Active = false;
+    trialCount++;
+    endTime = System.currentTimeMillis();
+    timeDiff = (endTime-startTime)/1000.0;
+    
   } else if(isButton12Active && overButton(BUTTON_12_POS[0], BUTTON_12_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
     isButton12Active = false;
+    trialCount++;
+    endTime = System.currentTimeMillis();
+    timeDiff = (endTime-startTime)/1000.0;
+    
   } else if(isButton20Active && overButton(BUTTON_20_POS[0], BUTTON_20_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
     isButton20Active = false;
+    trialCount++;
+    endTime = System.currentTimeMillis();
+    timeDiff = (endTime-startTime)/1000.0;
+    
   } else if(isButton21Active && overButton(BUTTON_21_POS[0], BUTTON_21_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
     isButton21Active = false;
+    trialCount++;
+    endTime = System.currentTimeMillis();
+    timeDiff = (endTime-startTime)/1000.0;
+    
   } else if(isButton22Active && overButton(BUTTON_22_POS[0], BUTTON_22_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
     isButton22Active = false;
+    trialCount++;
+    endTime = System.currentTimeMillis();
+    timeDiff = (endTime-startTime)/1000.0;
+  } else {
+    errorCount++;
   }
   
+  println(""+userNumber+"# "+blockNo+"# "+trialCount+"# "+nf(timeDiff, 0, 3)+"sec "+errorCount);
 }
 
 void activateRandomButton() {
-  int buttonToActivate = int(random(8));
+  int buttonToActivate = int(random(2));
+  
+  if(isTwoButtonsDone) {
+    buttonToActivate = int(random(4));
+  } else if(isFourButtonsDone) {
+    buttonToActivate = int(random(8));
+  }
+  
     switch(buttonToActivate) {
       case 0:
-        isButton00Active = true;
-        break;
-      case 1:
-        isButton01Active = true;
-        break;
-      case 2:
-        isButton02Active = true;
-        break;
-      case 3:
+        //isButton00Active = true;
         isButton10Active = true;
         break;
-      case 4:
+      
+      case 1:
+        //isButton01Active = true;
         isButton12Active = true;
         break;
-      case 5:
-        isButton20Active = true;
+      
+      case 2:
+        isButton01Active = true;
+        //isButton02Active = true;
         break;
-      case 6:
+      
+      case 3:
+        //isButton10Active = true;
         isButton21Active = true;
         break;
+      
+      case 4:
+        //isButton12Active = true;
+        isButton00Active = true;
+        break;
+      
+      case 5:
+        //isButton20Active = true;
+        isButton02Active = true;
+        break;
+      
+      case 6:
+        //isButton21Active = true;
+        isButton20Active = true;
+        break;
+      
       case 7:
         isButton22Active = true;
         break;
