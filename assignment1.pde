@@ -1,4 +1,5 @@
 import javax.swing.*; 
+import processing.sound.*;
 
 boolean isButton00Active = false;  
 boolean isButton01Active = false;  
@@ -15,7 +16,7 @@ boolean isTwoButtonsDone = false;
 boolean isFourButtonsDone = false;
 boolean isEightButtonsDone = false;
 
-String userNumber = "aa";
+String userNumber;
 int trialCount = 0;
 
 long startTime = 0;
@@ -26,10 +27,12 @@ int errorCount = 0;
 int blockNo = 1;
 
 PrintWriter output;
+SoundFile sound;
 
 void setup() {
   size(600, 600);
   background(0);
+  sound = new SoundFile(this, "sound.wav");
   
   userNumber = JOptionPane.showInputDialog(frame, "Enter user number");
   
@@ -131,6 +134,7 @@ void mousePressed() {
   
     resetButtons();
     activateRandomButton();
+    errorCount = 0;
     if(trialCount >= TRIAL_COUNT) {
       
       trialCount = 0;
@@ -154,58 +158,71 @@ void mousePressed() {
     return;
     
   } else if(isButton00Active && overButton(BUTTON_00_POS[0], BUTTON_00_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
+    sound.play();
     isButton00Active = false;
     trialCount++;
     endTime = System.currentTimeMillis();
     timeDiff = (endTime-startTime)/1000.0;
+    logData();
   
   } else if(isButton01Active && overButton(BUTTON_01_POS[0], BUTTON_01_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
+    sound.play();
     isButton01Active = false;
     trialCount++;
     endTime = System.currentTimeMillis();
     timeDiff = (endTime-startTime)/1000.0;
+    logData();
     
   } else if(isButton02Active && overButton(BUTTON_02_POS[0], BUTTON_02_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
+    sound.play();
     isButton02Active = false;
     trialCount++;
     endTime = System.currentTimeMillis();
     timeDiff = (endTime-startTime)/1000.0;
+    logData();
     
   } else if(isButton10Active && overButton(BUTTON_10_POS[0], BUTTON_10_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
+    sound.play();
     isButton10Active = false;
     trialCount++;
     endTime = System.currentTimeMillis();
     timeDiff = (endTime-startTime)/1000.0;
+    logData();
     
   } else if(isButton12Active && overButton(BUTTON_12_POS[0], BUTTON_12_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
+    sound.play();
     isButton12Active = false;
     trialCount++;
     endTime = System.currentTimeMillis();
     timeDiff = (endTime-startTime)/1000.0;
+    logData();
     
   } else if(isButton20Active && overButton(BUTTON_20_POS[0], BUTTON_20_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
+    sound.play();
     isButton20Active = false;
     trialCount++;
     endTime = System.currentTimeMillis();
     timeDiff = (endTime-startTime)/1000.0;
+    logData();
     
   } else if(isButton21Active && overButton(BUTTON_21_POS[0], BUTTON_21_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
+    sound.play();
     isButton21Active = false;
     trialCount++;
     endTime = System.currentTimeMillis();
     timeDiff = (endTime-startTime)/1000.0;
+    logData();
     
   } else if(isButton22Active && overButton(BUTTON_22_POS[0], BUTTON_22_POS[1], BUTTON_WIDTH, BUTTON_HEIGHT)) {
+    sound.play();
     isButton22Active = false;
     trialCount++;
     endTime = System.currentTimeMillis();
     timeDiff = (endTime-startTime)/1000.0;
+    logData();
   } else {
     errorCount++;
   }
-  
-  println("User:"+userNumber+"   Block no:"+blockNo+"   Trial no:"+trialCount+"   Time elapsed:"+nf(timeDiff, 0, 5)+"sec   Error count:"+errorCount);
-  output.println("User:"+userNumber+"   Block no:"+blockNo+"   Trial no:"+trialCount+"   Time elapsed:"+nf(timeDiff, 0, 5)+"sec   Error count:"+errorCount);
 }
 
 void activateRandomButton() {
@@ -263,4 +280,9 @@ void resetButtons() {
   isButton20Active = false;  
   isButton21Active = false; 
   isButton22Active = false;  
+}
+
+void logData() {
+  println("User:"+userNumber+"   Block no:"+blockNo+"   Trial no:"+trialCount+"   Time elapsed:"+nf(timeDiff, 0, 5)+"sec   Error count:"+errorCount);
+  output.println("User:"+userNumber+"   Block no:"+blockNo+"   Trial no:"+trialCount+"   Time elapsed:"+nf(timeDiff, 0, 5)+"sec   Error count:"+errorCount);
 }

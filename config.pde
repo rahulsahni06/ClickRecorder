@@ -19,4 +19,4 @@ final float[] BUTTON_20_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)
 final float[] BUTTON_21_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*90.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*90.0)};
 final float[] BUTTON_22_POS = {WIDTH/2 + START_BUTTON_WIDTH * 2 * cos((PI/180.0)*45.0), HEIGHT/2 + START_BUTTON_HEIGHT * 2 * sin((PI/180.0)*45.0)};
 
-final int TRIAL_COUNT = 5;
+final int TRIAL_COUNT = 20;
